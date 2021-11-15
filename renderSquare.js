@@ -18,12 +18,8 @@
       const size = max_val / 255 * 300
       const size2 = size/8
       ctx.rect(60 -size2, 60-size2, 20+size2*2, 20+size2*2)
-      
-      
       ctx.rect(140 -size2, 60-size2, 20+size2*2, 20+size2*2)
-      
       ctx.rect(220 -size2, 60-size2, 20+size2*2, 20+size2*2)
-      
       ctx.rect(60 -size2, 140-size2, 20+size2*2, 20+size2*2)
       ctx.rect(140 -size2, 140-size2, 20+size2*2, 20+size2*2)
       ctx.rect(220 -size2, 140-size2, 20+size2*2, 20+size2*2)

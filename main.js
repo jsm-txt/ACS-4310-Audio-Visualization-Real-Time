@@ -55,24 +55,23 @@ refShape.style.backgroundColor = 'navy'
 refShape.style.borderRadius = '0px'
 
 function toggleRGB() {
-	let colors = ['red', 'green', 'blue', 'yellow', 'pink', 'purple'];
+	let colors = ['tomato','orange', 'lightgreen', 'yellowgreen','skyblue','navy',  'pink', 'purple'];
 	let currentIndex = 0;
 	//let refreshIntervalId = 0
 	if (RGB === false) {
 		RGB = true
-
 		var refreshIntervalId = setInterval(function () {
 			refRGB.style.backgroundColor = colors[currentIndex]
 			if (!colors[currentIndex]) {
 				currentIndex = 0;
 			} else {
 				currentIndex++;
-			}
+			}s
 		}, 400);
 	} else {
 		RGB = false
-		// clearInterval(refreshIntervalId);
-		// console.log('refresh' + refreshIntervalId)
+		clearInterval(refreshIntervalId);
+		console.log('refresh' + refreshIntervalId)
 		refRGB.style.backgroundColor = 'grey'
 	}
 }
