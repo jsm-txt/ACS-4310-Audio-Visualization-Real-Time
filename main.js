@@ -140,8 +140,8 @@ function render() {
 	if (shape === 'square') {
 		renderSquare(frequencyArray,ctx, RGB)
 	} else {
-		// renderCircle(frequencyArray,ctx, RGB)
-		circleGridRenderer(frequencyArray, ctx, 300, 300)
+		 renderCircle(frequencyArray,ctx, RGB)
+		//circleGridRenderer(frequencyArray, ctx, 300, 300)
 	}
 	
 	// circleGridRenderer(frequencyArray, ctx, 300, 300)
