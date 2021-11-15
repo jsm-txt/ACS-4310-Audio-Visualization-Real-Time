@@ -12,26 +12,49 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        font-family:Arial, Helvetica, sans-serif;
       }
 
       #canvas {
-        border: 1px solid;
+        border: 1px solid green;
       }
 
       button {
         margin: 5px;
         padding: 1em;
-        border-radius: 0.25em;
-        border: 1px solid;
+        border-radius: 0.5em;
+        border: none;
+        width: 80px;
+      }
+      #button-play{
+        background-color: rgb(141, 255, 47);
+      }
+      #button-pause{
+        background-color: tomato;
+      }
+      #button-shape{
+        width:85px;
+        background-color: rgb(130, 205, 245);
+        display: flex;
+        justify-items:center;
+        
+      }
+      #shape{
+        height: 12px;
+        width: 12px;
+        margin:0px;
+        margin-left: 5px;
       }
     </style>
   </head>
   <body>
-
+    <h1>Audio Visualizer</h1>
     <canvas id="canvas" width="300" height="300"></canvas>
     
     <button id="button-play">Play</button>
     <button id="button-pause">Stop</button>
+    <button id="button-rgb">RGB</button>
+    <button id="button-shape">Shape = <div id=shape></div></button>
 
     <script src="main.js" type="module"></script>
   </body>

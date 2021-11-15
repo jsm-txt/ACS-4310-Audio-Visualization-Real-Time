@@ -11,6 +11,8 @@ import circleCenterRenderer from './renderCircleCenter.js'
 import verticalBarsRenderer from './verticalBarRenderer.js'
 import verticalBarsMonoRenderer from './verticalBarsMonoRenderer.js'
 import radialRayRenderer from './radialRayRenderer.js'
+import renderSquare from './renderSquare.js'
+import renderCircle from './renderCircle.js'
 
 
 // --------------------------------------------------------
@@ -26,6 +28,10 @@ const ctx = canvas.getContext('2d')
 // Buttons 
 const playButton = document.getElementById('button-play')
 const pauseButton = document.getElementById('button-pause')
+const rgbButton = document.getElementById('button-rgb')
+const shapeButton = document.getElementById('button-shape')
+const refRGB = document.querySelector('#button-rgb')
+const refShape = document.querySelector('#shape')
 
 playButton.addEventListener('click', (e) => {
 	startAudio()
@@ -35,7 +41,52 @@ pauseButton.addEventListener('click', (e) => {
 	audio.pause()
 })
 
+rgbButton.addEventListener('click', (e) => {
+	toggleRGB()
+})
 
+shapeButton.addEventListener('click', (e) => {
+	toggleShape()
+})
+
+let RGB = false
+let shape = 'square'
+refShape.style.backgroundColor = 'navy'
+refShape.style.borderRadius = '0px'
+
+function toggleRGB() {
+	let colors = ['red', 'green', 'blue', 'yellow', 'pink', 'purple'];
+	let currentIndex = 0;
+	//let refreshIntervalId = 0
+	if (RGB === false) {
+		RGB = true
+
+		var refreshIntervalId = setInterval(function () {
+			refRGB.style.backgroundColor = colors[currentIndex]
+			if (!colors[currentIndex]) {
+				currentIndex = 0;
+			} else {
+				currentIndex++;
+			}
+		}, 400);
+	} else {
+		RGB = false
+		// clearInterval(refreshIntervalId);
+		// console.log('refresh' + refreshIntervalId)
+		refRGB.style.backgroundColor = 'grey'
+	}
+}
+function toggleShape() {
+	if (shape === 'square') {
+		shape = 'circle'
+		refShape.style.backgroundColor = 'yellow'
+		refShape.style.borderRadius = '20px'
+	} else {
+		shape = 'square'
+		refShape.style.backgroundColor = 'navy'
+		refShape.style.borderRadius = '0px'
+	}
+}
 // --------------------------------------------------------
 // Audio setup
 
@@ -75,7 +126,7 @@ function startAudio() {
 
 // This function renders the audio to the canvas using a renderer
 function render() {
-
+	ctx.clearRect(0, 0, 300, 300)
 	const centerX = 300 / 2
 	const centerY = 300 / 2
 	const radius = 300 / 5
@@ -85,10 +136,17 @@ function render() {
 	// radialRayRenderer(frequencyArray, ctx, centerX, centerY, radius)
 	// verticalBarsMonoRenderer(frequencyArray, ctx, 12, 300, 300)
 	// verticalBarsRenderer(frequencyArray, ctx, 300, 300)
-	// circleCenterRenderer(frequencyArray, ctx, centerX, centerY)
+	//circleCenterRenderer(frequencyArray, ctx, centerX, centerY)
+	if (shape === 'square') {
+		renderSquare(frequencyArray,ctx, RGB)
+	} else {
+		// renderCircle(frequencyArray,ctx, RGB)
+		circleGridRenderer(frequencyArray, ctx, 300, 300)
+	}
+	
 	// circleGridRenderer(frequencyArray, ctx, 300, 300)
-	circleRenderer(frequencyArray, ctx, centerX, centerY, radius)
-
+	//circleRenderer(frequencyArray, ctx, centerX, centerY, radius)
+	
 	// Set up the next animation frame
 	requestAnimationFrame(render)
 }
